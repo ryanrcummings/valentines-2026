@@ -120,7 +120,7 @@
             }
             
             yesButton.addEventListener('click', function () {
-                alert("Yay! Can't wait for our date! ❤️");
+                showCustomModal("Your Secret Admirer", "Yay! Can't wait for our date! ❤️");
                 confetti();
                 document.getElementById("spotify-player").style.display = 'block';
 
@@ -133,6 +133,19 @@
                 counterDiv.style.display = 'block';
                 document.querySelector('.content-box').appendChild(counterDiv);
             });
+
+            function showCustomModal(title, message) {
+                const modal = document.createElement('div');
+                modal.className = 'custom-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3>${title}</h3>
+                        <p>${message}</p>
+                        <button onclick="this.closest('.custom-modal').remove()">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
 
             function generateEvilFaces() {
                 for (let i = 0; i < 5; i++) {
