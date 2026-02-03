@@ -94,6 +94,7 @@
             const noButton = document.getElementById('no');
             const yesButton = document.getElementById('yes');
             let noAttempts = 0;
+            let yesClicked = false;
 
             noButton.addEventListener('mouseenter', function () {
                 noAttempts++;
@@ -120,6 +121,8 @@
             }
             
             yesButton.addEventListener('click', function () {
+                if (yesClicked) return;
+                yesClicked = true;
                 showCustomModal("Your Secret Admirer", "Yay! Can't wait for our date! ❤️");
                 confetti();
                 document.getElementById("spotify-player").style.display = 'block';
