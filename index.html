@@ -16,9 +16,9 @@
         </div>
     </div>
 
-    <audio id="background-music" loop>
-        <source src="https://raw.githubusercontent.com/TheDataDesk/Binary-Love/main/song.mp3" type="audio/mp3">
-    </audio>
+    <div id="spotify-player" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; z-index:1000;">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3lFvgGhin8RuplMTfKlhSF?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0"></script>
     <script defer src="script.js"></script>
@@ -50,9 +50,9 @@
             }
             
             yesButton.addEventListener('click', function () {
-                alert('Yay! Can’t wait for our date! ❤️');
+                alert('Yay! Can't wait for our date! ❤️');
                 confetti();
-                document.getElementById("background-music").play();
+                document.getElementById("spotify-player").style.display = 'block';
             });
 
             function generateEvilFaces() {
