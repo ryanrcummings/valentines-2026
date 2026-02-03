@@ -16,6 +16,8 @@
         </div>
     </div>
 
+    <div id="no-counter" style="display:none; margin-top:15px; font-size:0.9em; color:#666;"></div>
+
     <div id="spotify-player" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; z-index:1000;">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3lFvgGhin8RuplMTfKlhSF?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
@@ -25,8 +27,10 @@
         document.addEventListener("DOMContentLoaded", function () {
             const noButton = document.getElementById('no');
             const yesButton = document.getElementById('yes');
-            
+            let noAttempts = 0;
+
             noButton.addEventListener('mouseenter', function () {
+                noAttempts++;
                 moveButton();
                 generateEvilFaces();
             });
@@ -34,6 +38,7 @@
             // Touch support for mobile
             noButton.addEventListener('touchstart', function (e) {
                 e.preventDefault();
+                noAttempts++;
                 moveButton();
                 generateEvilFaces();
             });
@@ -52,6 +57,15 @@
                 alert("Yay! Can't wait for our date! ❤️");
                 confetti();
                 document.getElementById("spotify-player").style.display = 'block';
+
+                const counterDiv = document.getElementById('no-counter');
+                if (noAttempts > 0) {
+                    counterDiv.innerHTML = "You tried to say no " + noAttempts + " time" + (noAttempts === 1 ? "" : "s") + "... but love always wins. 💕";
+                } else {
+                    counterDiv.innerHTML = "You didn't even try to say no! 😍";
+                }
+                counterDiv.style.display = 'block';
+                document.querySelector('.content-box').appendChild(counterDiv);
             });
 
             function generateEvilFaces() {
