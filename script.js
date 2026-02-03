@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const noButton = document.getElementById('no');
-    const yesButton = document.getElementById('yes');
     
     // No button moves away when hovered
     noButton.addEventListener('mouseenter', function () {
@@ -17,13 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
         noButton.style.left = newX + 'px';
         noButton.style.top = newY + 'px';
     }
-
-    // Yes button triggers confetti and music
-    yesButton.addEventListener('click', function () {
-        alert('Yay! Can’t wait for our date! ❤️');
-        confetti();
-        document.getElementById("background-music").play();
-    });
 
     // Function to generate multiple evil face emojis
     function generateEvilFaces() {
