@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="content-box">
+    <!-- Mini Game -->
+    <div class="game-container" id="game-container">
+        <h2>Catch 10 Hearts! 💕</h2>
+        <p class="game-score">Hearts caught: <span id="heart-count">0</span> / 10</p>
+    </div>
+
+    <div class="content-box" id="content-box" style="display:none;">
         <img src="monster.png" alt="Cute Valentine Monster" class="monster">
         <h1>Will you be my Valentine?</h1>
         <div class="button-container">
@@ -25,6 +31,64 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Mini Game Logic
+            const gameContainer = document.getElementById('game-container');
+            const contentBox = document.getElementById('content-box');
+            const heartCountDisplay = document.getElementById('heart-count');
+            let heartsCaught = 0;
+            const heartsNeeded = 10;
+            let gameActive = true;
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '🩷'];
+
+            function createFallingHeart() {
+                if (!gameActive) return;
+
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+                heart.style.top = '-50px';
+                gameContainer.appendChild(heart);
+
+                const duration = 3000 + Math.random() * 2000;
+                heart.style.animation = `fall ${duration}ms linear forwards`;
+
+                heart.addEventListener('click', function() {
+                    if (!gameActive) return;
+                    heartsCaught++;
+                    heartCountDisplay.textContent = heartsCaught;
+                    heart.remove();
+                    confetti({ particleCount: 30, spread: 50, origin: { x: parseFloat(heart.style.left) / window.innerWidth, y: 0.5 } });
+
+                    if (heartsCaught >= heartsNeeded) {
+                        gameActive = false;
+                        setTimeout(endGame, 500);
+                    }
+                });
+
+                heart.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    heart.click();
+                });
+
+                setTimeout(() => heart.remove(), duration);
+            }
+
+            function endGame() {
+                gameContainer.style.transition = 'opacity 1s';
+                gameContainer.style.opacity = '0';
+                setTimeout(() => {
+                    gameContainer.style.display = 'none';
+                    contentBox.style.display = 'block';
+                    confetti({ particleCount: 100, spread: 70 });
+                }, 1000);
+            }
+
+            // Spawn hearts regularly
+            setInterval(createFallingHeart, 400);
+            createFallingHeart();
+
+            // Original Valentine Logic
             const noButton = document.getElementById('no');
             const yesButton = document.getElementById('yes');
             let noAttempts = 0;
