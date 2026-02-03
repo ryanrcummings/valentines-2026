@@ -123,6 +123,7 @@
             yesButton.addEventListener('click', function () {
                 if (yesClicked) return;
                 yesClicked = true;
+                noButton.style.display = 'none';
                 showCustomModal("Your Secret Admirer", "Yay! Can't wait for our date! ❤️");
                 confetti();
                 document.getElementById("spotify-player").style.display = 'block';
