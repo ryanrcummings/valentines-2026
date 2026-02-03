@@ -141,10 +141,19 @@
                     <div class="modal-content">
                         <h3>${title}</h3>
                         <p>${message}</p>
-                        <button onclick="this.closest('.custom-modal').remove()">OK</button>
+                        <button id="modal-ok-btn">OK</button>
                     </div>
                 `;
                 document.body.appendChild(modal);
+
+                const okBtn = document.getElementById('modal-ok-btn');
+                okBtn.addEventListener('click', function() {
+                    modal.remove();
+                });
+                okBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    modal.remove();
+                });
             }
 
             function generateEvilFaces() {
