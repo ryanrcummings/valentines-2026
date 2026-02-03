@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=800, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary Love: 1 or 1?</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,6 +28,13 @@
             const yesButton = document.getElementById('yes');
             
             noButton.addEventListener('mouseenter', function () {
+                moveButton();
+                generateEvilFaces();
+            });
+
+            // Touch support for mobile
+            noButton.addEventListener('touchstart', function (e) {
+                e.preventDefault();
                 moveButton();
                 generateEvilFaces();
             });

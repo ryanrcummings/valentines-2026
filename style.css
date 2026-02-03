@@ -81,3 +81,24 @@ button {
     100% { transform: scale(2); opacity: 0; }
 }
 
+/* Mobile Styles */
+@media (max-width: 600px) {
+    .content-box {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .monster {
+        width: 150px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        padding: 12px 24px;
+        font-size: 1.1em;
+    }
+}
+
