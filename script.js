@@ -2,16 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const noButton = document.getElementById('no');
     const yesButton = document.getElementById('yes');
     
-    // No button shakes and spawns evil faces when hovered
+    // No button moves away when hovered
     noButton.addEventListener('mouseenter', function () {
-        noButton.classList.add('shake');
+        moveButton();
         generateEvilFaces();
     });
-    
-    // No button stops shaking when the mouse leaves
-    noButton.addEventListener('mouseleave', function () {
-        noButton.classList.remove('shake');
-    });
+
+    function moveButton() {
+        const maxX = window.innerWidth - noButton.offsetWidth - 20;
+        const maxY = window.innerHeight - noButton.offsetHeight - 20;
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+        noButton.style.position = 'fixed';
+        noButton.style.left = newX + 'px';
+        noButton.style.top = newY + 'px';
+    }
 
     // Yes button triggers confetti and music
     yesButton.addEventListener('click', function () {

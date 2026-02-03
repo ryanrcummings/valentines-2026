@@ -74,10 +74,3 @@ button {
     100% { transform: scale(2); opacity: 0; }
 }
 
-/* Footer Styling */
-footer {
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
-    font-size: 14px;
-}
