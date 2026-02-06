@@ -83,6 +83,7 @@
                     gameContainer.style.display = 'none';
                     contentBox.style.display = 'block';
                     confetti({ particleCount: 100, spread: 70 });
+                    startLoveNotes();
                 }, 1000);
             }
 
@@ -158,6 +159,47 @@
                     e.preventDefault();
                     modal.remove();
                 });
+            }
+
+            // Floating Love Notes
+            const loveNotes = [
+                "You make me smile 💗",
+                "Forever yours 💌",
+                "You're my favorite person 🥰",
+                "My heart is yours 💕",
+                "I love your laugh 😊",
+                "You + Me = ❤️",
+                "Dream come true ✨",
+                "My whole world 🌍💖",
+                "Always & forever 💍",
+                "You're adorable 🩷",
+                "Lucky to have you 🍀",
+                "Thinking of you 💭",
+                "My sunshine ☀️",
+                "Can't stop smiling 😄",
+                "Best thing in my life 💝"
+            ];
+
+            let loveNotesActive = false;
+            let loveNoteInterval = null;
+
+            function createLoveNote() {
+                if (!loveNotesActive) return;
+                const note = document.createElement('div');
+                note.className = 'love-note';
+                note.textContent = loveNotes[Math.floor(Math.random() * loveNotes.length)];
+                note.style.left = (10 + Math.random() * 80) + '%';
+                note.style.bottom = '-40px';
+                const duration = 8000 + Math.random() * 4000;
+                note.style.animationDuration = duration + 'ms';
+                document.body.appendChild(note);
+                setTimeout(() => note.remove(), duration);
+            }
+
+            function startLoveNotes() {
+                loveNotesActive = true;
+                createLoveNote();
+                loveNoteInterval = setInterval(createLoveNote, 2500);
             }
 
             function generateEvilFaces() {
