@@ -145,7 +145,7 @@ button {
     z-index: 500;
     white-space: nowrap;
     box-shadow: 0 2px 8px rgba(233, 30, 99, 0.15);
-    animation: floatNote linear forwards;
+    animation: floatNote 10s linear forwards;
 }
 
 .love-note::after {
